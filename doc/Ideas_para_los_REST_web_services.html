@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Ideas para los REST web services</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; }
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<ul class="toc right"><li><a href="#API-REST-web-services-Osdipp">API REST web services Osdipp</a><ul><li><a href="#URLs">URLs</a><ul><li><a href="#Tipo-de-prestadores">Tipo de prestadores</a></li><li><a href="#Especialidades-para-un-tipo-de-prestador">Especialidades para un tipo de prestador</a></li><li><a href="#Regiones">Regiones</a></li><li><a href="#Zonas-dentro-de-región">Zonas dentro de región</a></li><li><a href="#Localidades-dentro-de-zona">Localidades dentro de zona</a></li><li><a href="#Planes">Planes</a></li><li><a href="#Prestadores">Prestadores</a><ul><li><a href="#Búsqueda-en-cartilla-médica">Búsqueda en cartilla médica</a></li><li><a href="#Búsqueda-en-cartilla-de-farmacias">Búsqueda en cartilla de farmacias</a></li><li><a href="#Detalles-de-un-prestador">Detalles de un prestador:</a></li></ul>
+</li></ul>
+</li><li><a href="#Formato-JSON-de-respuesta">Formato JSON de respuesta</a></li></ul></li></ul>
+
+
+	<a name="API-REST-web-services-Osdipp"></a>
+<h1 >API REST web services Osdipp<a href="#API-REST-web-services-Osdipp" class="wiki-anchor">&para;</a></h1>
+
+
+	<a name="URLs"></a>
+<h2 >URLs<a href="#URLs" class="wiki-anchor">&para;</a></h2>
+
+
+	<a name="Tipo-de-prestadores"></a>
+<h3 >Tipo de prestadores<a href="#Tipo-de-prestadores" class="wiki-anchor">&para;</a></h3>
+
+
+<pre>
+http://www.osdipp.com.ar/tipo_prestadores
+</pre>
+
+	<a name="Especialidades-para-un-tipo-de-prestador"></a>
+<h3 >Especialidades para un tipo de prestador<a href="#Especialidades-para-un-tipo-de-prestador" class="wiki-anchor">&para;</a></h3>
+
+
+<pre>
+http://www.osdipp.com.ar/tipo_prestadores/:id_tipo_prestador/especialidades
+</pre>
+
+	<a name="Regiones"></a>
+<h3 >Regiones<a href="#Regiones" class="wiki-anchor">&para;</a></h3>
+
+
+<pre>
+http://www.osdipp.com.ar/regiones
+</pre>
+
+	<a name="Zonas-dentro-de-región"></a>
+<h3 >Zonas dentro de región<a href="#Zonas-dentro-de-región" class="wiki-anchor">&para;</a></h3>
+
+
+<pre>
+http://www.osdipp.com.ar/regiones/:id_region/zonas
+</pre>
+
+	<a name="Localidades-dentro-de-zona"></a>
+<h3 >Localidades dentro de zona<a href="#Localidades-dentro-de-zona" class="wiki-anchor">&para;</a></h3>
+
+
+<pre>
+http://www.osdipp.com.ar/zonas/:id_zona/localidades
+</pre>
+
+	<a name="Planes"></a>
+<h3 >Planes<a href="#Planes" class="wiki-anchor">&para;</a></h3>
+
+
+<pre>
+http://www.osdipp.com.ar/planes
+</pre>
+
+	<a name="Prestadores"></a>
+<h3 >Prestadores<a href="#Prestadores" class="wiki-anchor">&para;</a></h3>
+
+
+	<p>Notar que una vez especificada la zona (o localidad para farmacias) no<br />hace  falta  especificar región,  lo  mismo  con especialidad  ya  que<br />especialidad define tipo de prestador.</p>
+
+
+	<a name="Búsqueda-en-cartilla-médica"></a>
+<h4 >Búsqueda en cartilla médica<a href="#Búsqueda-en-cartilla-médica" class="wiki-anchor">&para;</a></h4>
+
+
+	<p>Parámetros posibles:</p>
+
+
+	<ul>
+	<li>prestador: Búsqueda por palabra clave (No se si estamos implementando esto)</li>
+		<li>zona_id: Zona donde buscar</li>
+		<li>especialidad_id: Especialidades a las cuales limitar la búsqueda</li>
+		<li>plan_id: Plan al cual limitar los resultados</li>
+		<li>page: Página a la que se quiere acceder (default 30 resultados/página)</li>
+	</ul>
+
+
+<pre>
+http://www.osdipp.com.ar/cartilla?plan_id=x&#38;especialidad_id=x&#38;localidad_id=x
+</pre>
+
+	<a name="Búsqueda-en-cartilla-de-farmacias"></a>
+<h4 >Búsqueda en cartilla de farmacias<a href="#Búsqueda-en-cartilla-de-farmacias" class="wiki-anchor">&para;</a></h4>
+
+
+	<p>Parámetros posibles:</p>
+
+
+	<ul>
+	<li>prestador: Búsqueda por palabra clave (No se si estamos implementando esto)</li>
+		<li>localidad_id: Localidad donde buscar farmacias</li>
+		<li>page: Página a la que se quiere acceder (default 30 resultados/página)</li>
+	</ul>
+
+
+<pre>
+http://www.osdipp.com.ar/farmacias?prestador=x&#38;localidad_id=x&#38;page=x
+</pre>
+
+	<a name="Detalles-de-un-prestador"></a>
+<h4 >Detalles de un prestador:<a href="#Detalles-de-un-prestador" class="wiki-anchor">&para;</a></h4>
+
+
+	<p>En caso de que se implemente el detalle de prestador porque la info no entra en el listado <br />general se deberá implementar una consulta a:</p>
+
+
+<pre>
+http://www.osdipp.com.ar/prestadores/:id_prestador
+</pre>
+
+	<a name="Formato-JSON-de-respuesta"></a>
+<h2 >Formato JSON de respuesta<a href="#Formato-JSON-de-respuesta" class="wiki-anchor">&para;</a></h2>
+
+
+	<p>Para los datos de los combo de búsqueda(tipo prestador, especialidad, region, zona, localidad, plan) <br />se usará el siguiente formato:</p>
+
+
+<pre>
+{id:id numerico , value: valor alfanumerico}
+</pre>
+
+	<p>Cada servicio deberá devolver un vector con los resultados, es decir:</p>
+
+
+<pre>
+[{ id:id numerico , value: valor alfanumerico},{ id:id numerico , value: valor alfanumerico},...]
+</pre>
+
+	<p>La estructura de datos de los resultados tanto cartilla como farmacias se asemeja más a lo<br />siguiente.</p>
+
+
+<pre>
+<code class="javascript syntaxhl"><span class="CodeRay"><span class="line-numbers"> 1</span>[
+<span class="line-numbers"> 2</span>    {
+<span class="line-numbers"> 3</span>        <span class="key">nombre</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Nombre del prestador</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 4</span>        observacion (opcional): <span class="string"><span class="delimiter">&quot;</span><span class="content">Observacion acerca del prestador</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 5</span>        <span class="key">domicilios</span>: [
+<span class="line-numbers"> 6</span>            {
+<span class="line-numbers"> 7</span>                <span class="key">direccion</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Calle y altura</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 8</span>                <span class="key">localidad</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Nombre de la localidad</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 9</span>                <span class="key">zona</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Generalmente es el nombre de la provincia pero se usa para por ejemplo 'Gran Bs.As. Norte'</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"><strong>10</strong></span>                <span class="key">provincia</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Nombre de la provincia</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers">11</span>                <span class="key">telefonos</span>: [<span class="string"><span class="delimiter">&quot;</span><span class="content">1234-1234</span><span class="delimiter">&quot;</span></span>, ...]
+<span class="line-numbers">12</span>            }
+<span class="line-numbers">13</span>        ]
+<span class="line-numbers">14</span>    },
+<span class="line-numbers">15</span>    {..},
+<span class="line-numbers">16</span>]
+</span></code><br /></pre>
+
+	<p>El atributo  <code>observacion</code> lo  podemos obviar por  el momento  pero es<br />importante saber que puede llegar a existir.</p>
+
+
+	<p>Al poder  existir más  de un  domicilio y  teléfonos por  domicilio no<br />estoy seguro  de que esta estructura  resulte. Si hace falta  se puede<br />simplificar la estructura anterior en el servidor de alguna manera que<br />lo simplifique.</p>
+
+
+<pre>
+{ name: nombre del prestador , dir: dirección , tel: telefono del mismo }
+</pre>
+</body>
+</html>
